@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="theme/face/face.css">
+<meta name="keywords" content="">
+<meta name="description" content="API">
+<title>API</title>
+</head>
+<body>
+<div class="face-one-head">
+    <a class="face-one-head-logo" href="../index.html">
+        <img src="theme/media/logo.svg" alt="" class="face-one-head-logo-photo" />
+        face
+    </a>
+    <span class="face-one-head-slogan">
+        Write less code, do more things!
+    </span>
+    <!-- <div class="face-one-head-search">
+        <span class="face-one-head-search-icon fi fi-search"></span>
+        <input type="text" class="face-one-head-search-input" placeholder="搜索..." />
+    </div> -->
+    <div class="face-one-head-nav">
+        <span class="face-one-head-nav-switch fi fi-bars"></span>
+        <div class="face-one-head-nav-F-cnt">
+            <a href="../index.html" class="face-one-head-nav-link">首页</a>
+            <a href="intro.html" class="face-one-head-nav-link">指引</a>
+            <a href="index.html" class="face-one-head-nav-link">示例</a>
+            <a href="API.html" class="face-one-head-nav-link">API</a>
+        </div>
+        <script>
+        Array.from(document.querySelectorAll('.face-one-head-nav-link')).forEach(function (node) {
+            if (node.href) {
+                var pathname = node.href.replace(/\?.*/, '')
+                if (pathname === location.origin + location.pathname) {
+                    node.setAttribute('class', node.getAttribute('class') + ' ' + 'face-one-head-nav-link--on')
+                }
+            }
+        })
+        </script>
+    </div>
+</div>
+
+<div class="face-one-layout">
+<div class="face-one-layout-F-line">
+<div class="face-one-layout-sidebar">
+<div class="face-one-nav">
+<span class="face-one-nav-switch fi fi-angle-double-right"></span>
+<div class="face-one-nav-F-inner">
+<div class="face-one-nav-item">
+    <a href="intro.html" class="face-one-nav-item-label">指引</a>
+</div>
+<!-- <div class="face-one-nav-item">
+    <a href="index.html" class="face-one-nav-item-label">文档</a>
+</div> -->
+<div class="face-one-nav-item face-one-nav-item--group face-one-nav-item--group-on">
+    <span class="face-one-nav-item-switch fi fi-down"></span>
+    <span class="face-one-nav-item-label">
+        文档
+    </span>
+    <div class="face-one-nav-item-group">
+        <div class="face-one-nav-item-group-title">示例</div>
+        <a href="index.html#jQuery" class="face-one-nav-item-group-item">jQuery</a>
+        <a href="index.html#React" class="face-one-nav-item-group-item">React</a>
+    </div>
+    <div class="face-one-nav-item-group">
+        <div class="face-one-nav-item-group-title">API</div>
+        <a href="API.html" class="face-one-nav-item-group-item">API</a>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+<div class="face-one-layout-cnt">
+<div id="face-one-cnt" class="face-one-cnt markdown-body">
+<div id="face-one-sidebar" class="face-one-sidebar"></div>
+<h1 id="API" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#API"><span class="markrun-anchor-link"></span></a>API</h1><h2 id="new ListLogic()" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#new ListLogic()"><span class="markrun-anchor-link"></span></a>new ListLogic()</h2><pre><code class="lang-js"><span class="hljs-keyword">var</span> ListLogic = <span class="hljs-keyword">require</span>(<span class="hljs-string">'list-logic'</span>).<span class="hljs-keyword">default</span>
+<span class="hljs-comment">// import ListLogic from "lsit-logic"</span>
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">list</span> = <span class="hljs-keyword">new</span> ListLogic(options)
+</code></pre>
+<h2 id="生命周期" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#生命周期"><span class="markrun-anchor-link"></span></a>生命周期</h2><blockquote>
+<p>options 主要配置用于列表的生命周期触发时所需要获取的一些数据，因为不同列表获取数据的方式是不同的。</p>
+</blockquote>
+<pre><code><span class="hljs-type">list</span>.query()
+<span class="hljs-number">1.</span> getQuery
+<span class="hljs-number">3.</span> willFetch
+<span class="hljs-number">4.</span> fetch
+<span class="hljs-number">5.</span> render &amp; didFetch
+</code></pre><h3 id="getQuery" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#getQuery"><span class="markrun-anchor-link"></span></a>getQuery</h3><pre><code class="lang-js"><span class="hljs-keyword">new</span> ListLogic({
+    <span class="hljs-comment">// 获取查询条件</span>
+    getQuery: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-attr">search_keyword</span>: $(<span class="hljs-string">'#search_keyword'</span>).val()
+        }
+    }
+})
+</code></pre>
+<h3 id="willFetch" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#willFetch"><span class="markrun-anchor-link"></span></a>willFetch</h3><p>即将获取数据时触发执行，可通过 <code>next()</code> 终止后续操作。</p>
+<p>建议用来防止重复搜索和控制 loading 状态。</p>
+<blockquote>
+<p>list.query() 调用后会执行 willFetch 若调用 next 则执行 fetch。
+若要防止重复搜索，不调用 next 则不会执行 fetch</p>
+</blockquote>
+<pre><code class="lang-js">new ListLogic({    
+    willFetch: function (<span class="hljs-name">next</span>) {
+        if ($('#tip').hasClass('loading')) {
+            return
+        }
+        $('#tip').addClass('loading')
+        next()
+    }
+})
+</code></pre>
+<h3 id="fetch" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#fetch"><span class="markrun-anchor-link"></span></a>fetch</h3><p>获取数据时触发执行，将 <code>query</code> 作为参数查询数据。获取到数据后调用 <code>didFetch</code> 进入 <code>didFetch</code> 阶段。数据获取成功调用 <code>render</code> 调用 <code>options.render</code>。（有时服务器会拒绝用户访问数据，比如登录过期了。）</p>
+<blockquote>
+<p>options.willFetch 中调用 <code>next()</code> 后执行</p>
+</blockquote>
+<pre><code class="lang-js">new ListLogic({
+    fetch: function (<span class="hljs-name">queryData</span>, render, didFetch) {
+        $.ajax({
+            url: '/some',
+            data: queryData,
+            dataType: 'json'
+        }).done(<span class="hljs-name">function</span> (<span class="hljs-name">res</span>) {
+            if (<span class="hljs-name">res</span>.error) {
+                aler(<span class="hljs-name">res</span>.error)
+            }
+            else {
+                render(<span class="hljs-name">res</span>, queryData)
+            }
+        }).always(<span class="hljs-name">function</span> () {
+            didFetch()
+        })
+    }
+})
+</code></pre>
+<h3 id="didFetch" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#didFetch"><span class="markrun-anchor-link"></span></a>didFetch</h3><p>获取数据完成后触发执行。</p>
+<p>建议用来控制 loading 状态。</p>
+<blockquote>
+<p>在 <code>options.fetch</code> 中调用 didFetch() 会执行</p>
+</blockquote>
+<pre><code class="lang-js"><span class="hljs-selector-tag">new</span> <span class="hljs-selector-tag">ListLogic</span>({    
+    <span class="hljs-attribute">didFetch</span>: function (next) {
+        $(<span class="hljs-string">'#tip'</span>).<span class="hljs-built_in">removeClass</span>(<span class="hljs-string">'loading'</span>)
+    }
+})
+</code></pre>
+<h3 id="render" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#render"><span class="markrun-anchor-link"></span></a>render</h3><p>成功获取数据后触发执行，用于渲染页面数据。</p>
+<blockquote>
+<p>在 <code>options.fetch</code> 中调用 <code>render(res, query)</code> 会执行</p>
+</blockquote>
+<pre><code class="lang-js"><span class="hljs-selector-tag">new</span> <span class="hljs-selector-tag">ListLogic</span>({
+    <span class="hljs-attribute">render</span>: function (res, query) {        
+        var html = <span class="hljs-string">'&lt;ul&gt;&lt;li&gt;'</span> + res.data.<span class="hljs-built_in">join</span>(<span class="hljs-string">'&lt;/li&gt;&lt;/li&gt;'</span>) + <span class="hljs-string">'&lt;/li&gt;&lt;/ul&gt;'</span>
+        // 渲染列表
+        $(<span class="hljs-string">'#list'</span>).<span class="hljs-built_in">html</span>(html)
+        // 设置页码 （因为用户可能点击第<span class="hljs-number">10</span>页，但是第<span class="hljs-number">10</span>页的内容已经被服务器删除了，服务器只会返回第<span class="hljs-number">9</span>页）
+        $(<span class="hljs-string">'#page'</span>).<span class="hljs-built_in">val</span>(query.page)
+        // 同样设置搜索关键字是因为用户可能在加载过程中修改了搜索关键字，设置后搜索条件和结果能保持一致。
+        // 或用户调用了 clearQuery
+        $(<span class="hljs-string">'#search_keyword'</span>).<span class="hljs-built_in">val</span>(query.search_keyword)
+    }
+})
+</code></pre>
+<h2 id="query()" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#query()"><span class="markrun-anchor-link"></span></a>query()</h2><p>搜索或翻页时调用</p>
+<pre><code class="lang-js">$(<span class="hljs-string">'#search'</span>).on(<span class="hljs-string">'submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// 根据 options.getQuery() 返回值进行查询</span>
+    list.query()
+})
+
+$(<span class="hljs-string">'#chanegPage'</span>).on(<span class="hljs-string">'submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// 获取 options.getQuery() 返回值，与 {page: 2} 合并后进行查询</span>
+    list.query({<span class="hljs-attr">page</span>: <span class="hljs-number">2</span>})
+})
+</code></pre>
+<h3 id="数据片段条件" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#数据片段条件"><span class="markrun-anchor-link"></span></a>数据片段条件</h3><blockquote>
+<p>不求完全理解，知道大概概念即可</p>
+</blockquote>
+<p>注意，修改页码时需要传入 <code>{page: 2}</code> 而搜索时不需要传任何值。因为搜索条件分为两种：</p>
+<ol>
+<li>查询条件</li>
+<li>数据片段条件</li>
+</ol>
+<p>区分查询条件和数据片段条件是用于解决类似 <a href="https://github.com/onface/react/commits/master?after=e7be4bc86ef218f9654ad43398e363962f3127e3+34">github commits</a> 分页的复杂问题。这种列表没有页码，只有 <code>after</code> <code>before</code> 参数。（打开页面拉到下方点击 <a href="https://github.com/onface/react/commits/master?before=e7be4bc86ef218f9654ad43398e363962f3127e3+35">Newer</a> 和 <a href="https://github.com/onface/react/commits/master?after=e7be4bc86ef218f9654ad43398e363962f3127e3+69">Older</a>）</p>
+<p>查询条件一般有 <code>用户名</code> <code>手机号</code> <code>开始日期</code> <code>按金额正序排列</code> <code>按金额倒序排列</code> <code>每页显示多少条件数据</code></p>
+<p>数据片段条件一般有 <code>页码</code></p>
+<p><strong>他们的区别是：在多次查询中。<code>数据片段条件变化</code>时查询条件不变，<code>查询条件变化</code>时数据片段条件被设为为默认值。</strong>（一般情况默认值是 <code>&quot;&quot;</code> 或 <code>1</code>）</p>
+<p>从用户的角度来看就是：</p>
+<pre><code class="lang-shell"><span class="hljs-number">1</span>次搜索： user=nimo&amp;page=<span class="hljs-number">1</span>  <span class="hljs-comment">// 输入 nimo 点击搜索按钮</span>
+<span class="hljs-number">2</span>次搜索： user=nimo&amp;page=<span class="hljs-number">2</span>  <span class="hljs-comment">// 点击下一页 =&gt; page 改变，但 user 不变</span>
+<span class="hljs-number">3</span>次搜索： user=code&amp;page=<span class="hljs-number">1</span>  <span class="hljs-comment">// 输入 code 点击搜索按钮 =&gt; user 改变 page 改为默认值 1</span>
+</code></pre>
+<p>这里查询条件是 <code>user</code>，数据片段条件是 <code>page</code>。</p>
+<hr>
+<p>有时也会定义成</p>
+<p><code>https://github.com/onface/react/commits/master?after=e7be4bc86ef218f9654ad43398e363962f3127e3+34</code></p>
+<p>中的 <code>after</code></p>
+<p>什么条件是数据片段条件是由开发者根据项目实际情况去定义的。</p>
+<h3 id="复杂的情况" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#复杂的情况"><span class="markrun-anchor-link"></span></a>复杂的情况</h3><blockquote>
+<p>不求完全理解，知道大概概念即可</p>
+</blockquote>
+<p>用户多次查询时，如果用户搜索了 <code>user=nimo&amp;age=13&amp;page=2</code>，接着修改了 <code>&lt;input name=&quot;user&quot; /&gt;</code> 的值为 <code>abc</code> 但没有点击搜索按钮，直接点击了下一页 。 请求参数会变成 <code>user=abc&amp;age=13&amp;page=2</code>。</p>
+<p>有时根据产品需求请求参数需要是 <code>user=nimo&amp;age=13&amp;page=3</code> (用户没有点击搜索按钮，查询条件不变化，即使页面中的 input 变化了。)</p>
+<p>这时就需要点击搜索按钮时将当前值保存起来，然后通过 <code>options.getQuery()</code> 获取的值是刚才保存的值。</p>
+<p>比如用 jQuery 可以这样做</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> list = <span class="hljs-keyword">new</span> ListLogic({
+    <span class="hljs-attr">getQuery</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> $(<span class="hljs-string">'#search'</span>).data(<span class="hljs-string">'query'</span>)
+    }
+})
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setQuery</span> (<span class="hljs-params">this</span>) </span>{
+    <span class="hljs-keyword">var</span> query = {}
+    <span class="hljs-keyword">var</span> $<span class="hljs-keyword">this</span> = $(<span class="hljs-keyword">this</span>)
+    $<span class="hljs-keyword">this</span>.serializeArray().forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">item</span>) </span>{
+        query[item.name] = item.value
+    })
+    $<span class="hljs-keyword">this</span>.data(<span class="hljs-string">'query'</span>, query)
+}
+$(<span class="hljs-string">'#search'</span>).on(<span class="hljs-string">'submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    setQuery(<span class="hljs-keyword">this</span>)
+    list.query()
+})
+setQuery(
+    $(<span class="hljs-string">'#search'</span>)
+)
+
+</code></pre>
+<p>React Vue Angular 等声明式框架 则将 <code>setQuery</code> 改为将搜索条件命名为 <code>lastTimeQuery</code> 保存到 <code>state</code> 中</p></div>
+</div>
+</div>
+</div>
+<script>
+Array.from(document.querySelectorAll('.face-one-nav-item-label')).forEach(function (node) {
+    if (node.href) {
+        var pathname = node.href.replace(/\?.*/, '')
+        if (pathname === location.origin + location.pathname + location.hash) {
+            node.setAttribute('class', node.getAttribute('class') + ' ' + 'face-one-nav-item-label--on')
+        }
+    }
+})
+var faceOneGetParent = function faceOneGetParent (el, className) {
+   if (el.parentNode.nodeName.toLowerCase() === 'html') {
+       return null
+   }
+   var parentClassName = el.parentNode.getAttribute('class')
+   var classNames = ''
+   if (parentClassName) {
+       classNames = parentClassName.split(' ')
+   }
+   if (classNames.indexOf(className) !== -1) {
+       return el.parentNode
+   }
+   else {
+       return faceOneGetParent(el.parentNode, className)
+   }
+}
+Array.from(document.querySelectorAll('.face-one-nav-item-group-item')).forEach(function (node) {
+    addAvativeClass(node)
+    function addAvativeClass (node)  {
+        if (node.href) {
+            var pathname = node.href.replace(/\?.*/, '')
+            if (pathname === location.origin + location.pathname + location.hash) {
+                node.setAttribute('class', node.getAttribute('class') + ' ' + 'face-one-nav-item-group-item--on')
+                var parentNode = faceOneGetParent(node, 'face-one-nav-item--group')
+                if (parentNode) {
+                    parentNode.setAttribute('class', parentNode.getAttribute('class') + ' ' + 'face-one-nav-item--group-on')
+                }
+            }
+        }
+    }
+
+})
+</script>
+<div class="face-one-foot">
+    <div class="face-one-foot-F-inner">
+        <div class="face-one-foot-group">
+            <div class="face-one-foot-group-title">
+                <span class="face-one-foot-group-title-icon fi fi-github"></span>
+                Github
+            </div>
+            <div class="face-one-foot-group-item">
+                <a href="https://github.com/onface/list-logic" class="face-one-foot-group-item-link">list-logic</a>
+                - 项目源码
+            </div>
+        </div>
+        <div class="face-one-foot-group">
+            <div class="face-one-foot-group-title">
+                <span class="face-one-foot-group-title-icon fi fi-link"></span>
+                相关站点
+            </div>
+            <div class="face-one-foot-group-item">
+                <a href="https://onface.github.io/component-spec">component-spec</a>
+                - 组件规范
+            </div>
+            <div class="face-one-foot-group-item">
+                <a href="https://github.com/onface/module" class="face-one-foot-group-item-link">module</a>
+                - 开源项目脚手架
+            </div>
+            <div class="face-one-foot-group-item">
+                <a href="http://onface.cc/" class="face-one-foot-group-item-link">onface.cc</a>
+                - 资源集合
+            </div>
+        </div>
+        <div class="face-one-foot-group">
+            <div class="face-one-foot-group-title">
+                <span class="face-one-foot-group-title-icon fi fi-team"></span>
+                社区
+            </div>
+            <div class="face-one-foot-group-item">
+                <a href="https://github.com/onface/list-logic/issues" class="face-one-foot-group-item-link">Github issues</a>
+            </div>
+            <div class="face-one-foot-group-item">
+                <a href="https://github.com/onface/list-logic/issues/new" class="face-one-foot-group-item-link">提交bug</a>
+            </div>
+        </div>
+        <div class="face-one-foot-copyright">
+            <a href="../index.html" class="face-one-foot-copyright-title">
+                <img src="theme/media/logo.svg" class="face-one-foot-copyright-title-logo" />
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="theme/jquery.js"></script>
+<script>delete window.$</script>
+<script src="theme/face/face.js" ></script>
+</body>
+</html>

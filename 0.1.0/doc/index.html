@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="theme/face/face.css">
+<meta name="keywords" content="">
+<meta name="description" content="示例">
+<title>示例</title>
+</head>
+<body>
+<div class="face-one-head">
+    <a class="face-one-head-logo" href="../index.html">
+        <img src="theme/media/logo.svg" alt="" class="face-one-head-logo-photo" />
+        face
+    </a>
+    <span class="face-one-head-slogan">
+        Write less code, do more things!
+    </span>
+    <!-- <div class="face-one-head-search">
+        <span class="face-one-head-search-icon fi fi-search"></span>
+        <input type="text" class="face-one-head-search-input" placeholder="搜索..." />
+    </div> -->
+    <div class="face-one-head-nav">
+        <span class="face-one-head-nav-switch fi fi-bars"></span>
+        <div class="face-one-head-nav-F-cnt">
+            <a href="../index.html" class="face-one-head-nav-link">首页</a>
+            <a href="intro.html" class="face-one-head-nav-link">指引</a>
+            <a href="index.html" class="face-one-head-nav-link">示例</a>
+            <a href="API.html" class="face-one-head-nav-link">API</a>
+        </div>
+        <script>
+        Array.from(document.querySelectorAll('.face-one-head-nav-link')).forEach(function (node) {
+            if (node.href) {
+                var pathname = node.href.replace(/\?.*/, '')
+                if (pathname === location.origin + location.pathname) {
+                    node.setAttribute('class', node.getAttribute('class') + ' ' + 'face-one-head-nav-link--on')
+                }
+            }
+        })
+        </script>
+    </div>
+</div>
+
+<div class="face-one-layout">
+<div class="face-one-layout-F-line">
+<div class="face-one-layout-sidebar">
+<div class="face-one-nav">
+<span class="face-one-nav-switch fi fi-angle-double-right"></span>
+<div class="face-one-nav-F-inner">
+<div class="face-one-nav-item">
+    <a href="intro.html" class="face-one-nav-item-label">指引</a>
+</div>
+<!-- <div class="face-one-nav-item">
+    <a href="index.html" class="face-one-nav-item-label">文档</a>
+</div> -->
+<div class="face-one-nav-item face-one-nav-item--group face-one-nav-item--group-on">
+    <span class="face-one-nav-item-switch fi fi-down"></span>
+    <span class="face-one-nav-item-label">
+        文档
+    </span>
+    <div class="face-one-nav-item-group">
+        <div class="face-one-nav-item-group-title">示例</div>
+        <a href="index.html#jQuery" class="face-one-nav-item-group-item">jQuery</a>
+        <a href="index.html#React" class="face-one-nav-item-group-item">React</a>
+    </div>
+    <div class="face-one-nav-item-group">
+        <div class="face-one-nav-item-group-title">API</div>
+        <a href="API.html" class="face-one-nav-item-group-item">API</a>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+<div class="face-one-layout-cnt">
+<div id="face-one-cnt" class="face-one-cnt markdown-body">
+<div id="face-one-sidebar" class="face-one-sidebar"></div>
+<h1 id="示例" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#示例"><span class="markrun-anchor-link"></span></a>示例</h1><h2 id="jQuery" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#jQuery"><span class="markrun-anchor-link"></span></a>jQuery</h2><div class="markrun markrun--html">
+<div class="markrun-html"></div>
+<div class="markrun-code">
+<div id="loading" style="display:none;" >loading...</div>
+<form id="search">
+    cash: <input type="text" name="cash" placeholder="1~9" >
+    <button type="submit" >Search</button>
+</form>
+<div id="page"></div>
+<div id="list" style="padding:10px;border:1px solid #ABCDEF;" >
+
+</div></div>
+<div class="markrun-source">
+<pre><code class="lang-html">&lt;<span class="hljs-selector-tag">div</span> id=<span class="hljs-string">"loading"</span> style=<span class="hljs-string">"display:none;"</span> &gt;loading...&lt;/div&gt;
+&lt;<span class="hljs-selector-tag">form</span> id=<span class="hljs-string">"search"</span>&gt;
+    cash: &lt;<span class="hljs-selector-tag">input</span> type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"cash"</span> placeholder=<span class="hljs-string">"1~9"</span> &gt;
+    &lt;<span class="hljs-selector-tag">button</span> type=<span class="hljs-string">"submit"</span> &gt;Search&lt;/button&gt;
+&lt;/form&gt;
+&lt;<span class="hljs-selector-tag">div</span> id=<span class="hljs-string">"page"</span>&gt;&lt;/div&gt;
+&lt;<span class="hljs-selector-tag">div</span> id=<span class="hljs-string">"list"</span> style=<span class="hljs-string">"padding:10px;border:1px solid #ABCDEF;"</span> &gt;
+
+&lt;/div&gt;
+</code></pre></div>
+</div>
+
+    <div class="face-one-code  face-one-code--open ">
+                        <div class="face-one-code-F-view">
+                            <div class="face-one-code-example">
+                                
+                            </div>
+                            <div class="face-one-code-info">
+                                <div class="face-one-code-info-title">jQuery</div>
+                                <div class="face-one-code-info-desc">
+                                    <p>生命周期: <code>getQuery</code> <code>willFetch</code> <code>fetch</code> <code>willFetch</code> <code>render</code> 触发：<code>query</code></p>
+                                </div>
+                                <span class="face-one-code-info-switchCode fi fi-code"></span>
+                            </div>
+                        </div>
+                        <div class="face-one-code-source">
+                            <div class="face-one-code-source-tool">
+                                <span class="face-one-code-source-tool-copy fi fi-files-o"></span>
+                            </div>
+                            <pre><code class="lang-js"><span class="hljs-keyword">var</span> $ = <span class="hljs-keyword">require</span>(<span class="hljs-string">'jquery'</span>)
+<span class="hljs-keyword">var</span> Listlogic = <span class="hljs-keyword">require</span>(<span class="hljs-string">'list-logic'</span>)
+window.<span class="hljs-keyword">list</span> = <span class="hljs-keyword">null</span>
+$(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> $search = $(<span class="hljs-string">'#search'</span>)
+    <span class="hljs-keyword">var</span> $list = $(<span class="hljs-string">'#list'</span>)
+    <span class="hljs-keyword">var</span> $page = $(<span class="hljs-string">'#page'</span>)
+    <span class="hljs-keyword">var</span> $loading = $(<span class="hljs-string">'#loading'</span>)
+    <span class="hljs-keyword">list</span> = <span class="hljs-keyword">new</span> Listlogic({
+        getQuery: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">var</span> serializeArray = $search.serializeArray()
+            <span class="hljs-keyword">var</span> data = {}
+            serializeArray.<span class="hljs-keyword">forEach</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(item)</span> </span>{
+                data[item.name] = item.value
+            })
+            <span class="hljs-keyword">return</span> data
+        },
+        willFetch: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(next)</span> </span>{
+            <span class="hljs-keyword">if</span> ($loading.is(<span class="hljs-string">":visible"</span>)) {
+                console.log(<span class="hljs-string">'防止重复提交'</span>)
+                <span class="hljs-keyword">return</span>
+            }
+            $loading.show()
+            next()
+        },
+        didFetch: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            $loading.hide()
+        },
+        fetch: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(queryData, render, didFetch)</span> </span>{
+            queryData.page = queryData.page || <span class="hljs-number">1</span>
+            $.ajax({
+                url: <span class="hljs-string">'http://echo.onface.cc/onface/echo/mock/list'</span>,
+                type: <span class="hljs-string">'get'</span>,
+                data: queryData,
+                dataType: <span class="hljs-string">'json'</span>
+            }).done(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(res)</span> </span>{
+                console.log(res)
+                render(res, queryData)
+            }).fail(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                alert(<span class="hljs-string">'网络出错，请刷新重试'</span>)
+            })
+            .always(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                didFetch()
+            })
+        },
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(res, queryData)</span> </span>{
+            <span class="hljs-comment">// render list</span>
+            <span class="hljs-keyword">var</span> html = res.data.map(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(item)</span> </span>{
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;a style="display:block;" href="https://github.com/'</span> + item.idol + <span class="hljs-string">'" &gt;￥'</span> + item.cash + <span class="hljs-string">'-'</span> + item.name + <span class="hljs-string">'&lt;/a&gt;'</span>
+            })
+            <span class="hljs-keyword">if</span> (res.data.length === <span class="hljs-number">0</span>) {
+                html = <span class="hljs-string">'暂无数据 &lt;button id="clearSearch"&gt;清除搜索结果&lt;/button&gt;'</span>
+            }
+            $list.html(html)
+
+            <span class="hljs-comment">// render paging</span>
+            <span class="hljs-keyword">var</span> paging = []
+            res.page = Number(res.page)
+            <span class="hljs-keyword">if</span> (res.pageCount != <span class="hljs-number">1</span>) {
+                <span class="hljs-keyword">if</span> (res.page != <span class="hljs-number">1</span>) {
+                    paging.push(<span class="hljs-string">'&lt;button data-page="'</span>+ (res.page - <span class="hljs-number">1</span>) + <span class="hljs-string">'" &gt;Prev&lt;/button&gt;'</span>)
+                }
+                paging.push(res.page + <span class="hljs-string">'/'</span> + res.pageCount)
+                <span class="hljs-keyword">if</span> (res.page != res.pageCount) {
+                    paging.push(<span class="hljs-string">'&lt;button data-page="'</span>+ (res.page + <span class="hljs-number">1</span>) + <span class="hljs-string">'" &gt;Next&lt;/button&gt;'</span>)
+                }
+            }
+            $page.html(paging.join(<span class="hljs-string">''</span>))
+
+        }
+    })
+    $(<span class="hljs-string">'#search'</span>).on(<span class="hljs-string">'submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> </span>{
+        e.preventDefault()
+        <span class="hljs-keyword">list</span>.query()
+    })
+    $(<span class="hljs-string">'body'</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-string">'#clearSearch'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        $(<span class="hljs-string">'#search'</span>).get(<span class="hljs-number">0</span>).reset()
+        <span class="hljs-keyword">list</span>.query()
+    })
+    $(<span class="hljs-string">'#page'</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-string">'button'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> </span>{
+        <span class="hljs-keyword">list</span>.query({
+            page: $(this).data(<span class="hljs-string">'page'</span>)
+        })
+    })
+    <span class="hljs-keyword">list</span>.query()
+})
+
+</code></pre>
+                        </div>
+                        
+                    </div>
+                                
+<h2 id="after before" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#after before"><span class="markrun-anchor-link"></span></a>after before</h2></div>
+</div>
+</div>
+</div>
+<script>
+Array.from(document.querySelectorAll('.face-one-nav-item-label')).forEach(function (node) {
+    if (node.href) {
+        var pathname = node.href.replace(/\?.*/, '')
+        if (pathname === location.origin + location.pathname + location.hash) {
+            node.setAttribute('class', node.getAttribute('class') + ' ' + 'face-one-nav-item-label--on')
+        }
+    }
+})
+var faceOneGetParent = function faceOneGetParent (el, className) {
+   if (el.parentNode.nodeName.toLowerCase() === 'html') {
+       return null
+   }
+   var parentClassName = el.parentNode.getAttribute('class')
+   var classNames = ''
+   if (parentClassName) {
+       classNames = parentClassName.split(' ')
+   }
+   if (classNames.indexOf(className) !== -1) {
+       return el.parentNode
+   }
+   else {
+       return faceOneGetParent(el.parentNode, className)
+   }
+}
+Array.from(document.querySelectorAll('.face-one-nav-item-group-item')).forEach(function (node) {
+    addAvativeClass(node)
+    function addAvativeClass (node)  {
+        if (node.href) {
+            var pathname = node.href.replace(/\?.*/, '')
+            if (pathname === location.origin + location.pathname + location.hash) {
+                node.setAttribute('class', node.getAttribute('class') + ' ' + 'face-one-nav-item-group-item--on')
+                var parentNode = faceOneGetParent(node, 'face-one-nav-item--group')
+                if (parentNode) {
+                    parentNode.setAttribute('class', parentNode.getAttribute('class') + ' ' + 'face-one-nav-item--group-on')
+                }
+            }
+        }
+    }
+
+})
+</script>
+<div class="face-one-foot">
+    <div class="face-one-foot-F-inner">
+        <div class="face-one-foot-group">
+            <div class="face-one-foot-group-title">
+                <span class="face-one-foot-group-title-icon fi fi-github"></span>
+                Github
+            </div>
+            <div class="face-one-foot-group-item">
+                <a href="https://github.com/onface/list-logic" class="face-one-foot-group-item-link">list-logic</a>
+                - 项目源码
+            </div>
+        </div>
+        <div class="face-one-foot-group">
+            <div class="face-one-foot-group-title">
+                <span class="face-one-foot-group-title-icon fi fi-link"></span>
+                相关站点
+            </div>
+            <div class="face-one-foot-group-item">
+                <a href="https://onface.github.io/component-spec">component-spec</a>
+                - 组件规范
+            </div>
+            <div class="face-one-foot-group-item">
+                <a href="https://github.com/onface/module" class="face-one-foot-group-item-link">module</a>
+                - 开源项目脚手架
+            </div>
+            <div class="face-one-foot-group-item">
+                <a href="http://onface.cc/" class="face-one-foot-group-item-link">onface.cc</a>
+                - 资源集合
+            </div>
+        </div>
+        <div class="face-one-foot-group">
+            <div class="face-one-foot-group-title">
+                <span class="face-one-foot-group-title-icon fi fi-team"></span>
+                社区
+            </div>
+            <div class="face-one-foot-group-item">
+                <a href="https://github.com/onface/list-logic/issues" class="face-one-foot-group-item-link">Github issues</a>
+            </div>
+            <div class="face-one-foot-group-item">
+                <a href="https://github.com/onface/list-logic/issues/new" class="face-one-foot-group-item-link">提交bug</a>
+            </div>
+        </div>
+        <div class="face-one-foot-copyright">
+            <a href="../index.html" class="face-one-foot-copyright-title">
+                <img src="theme/media/logo.svg" class="face-one-foot-copyright-title-logo" />
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="theme/jquery.js"></script>
+<script>delete window.$</script>
+<script src="theme/face/face.js" ></script>
+<script data-markrun-lastrun="true">
+                        document.write('<scri' + 'pt src="./jquery.demo.js?v=0.1.0"' + '" ></sc' + 'ript>')
+                        </script></body>
+</html>
