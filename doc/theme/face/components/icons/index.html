@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+    .icon {
+        display: inline-block;
+        color: #666;
+        font-size:2em;
+        margin-right: .5em;
+        margin-bottom: .5em;
+        width: 3.5em;
+        height: 2em;
+        text-align: center;
+    }
+    .icon .fi {
+        font-size: 1em;
+    }
+    .icon-text {
+        text-align: center;
+        font-size: .2em;
+        display: block;
+    }
+    body {
+        word-break: break-all;
+    }
+    </style>
+</head>
+<body>
+    <blockquote cite="http://iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.d9df05512&cid=790">
+        图标来源 ant-design <a href="http://iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.d9df05512&cid=790">http://iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.d9df05512&cid=790</a>
+    </blockquote>
+    <span class="fi fi-up"></span>
+    <span class="fi fi-up-o"></span>
+    <span class="fi fi-up-f"></span>
+    <span class="fi fi-up-of"></span>
+    <span class="fi fi-up-s"></span>
+    <span class="fi fi-up-sf"></span>
+<pre>
+    <code>&lt;span class="fi fi-${name}" &gt;&lt;/span&gt;</code>
+    <code>&lt;span class="fi fi-${name}-${status}" &gt;&lt;/span&gt;</code>
+
+    <code>&lt;span class="fi fi-up &gt;&lt;/span&gt;</code>
+    <code>&lt;span class="fi fi-up-o &gt;&lt;/span&gt;</code>
+    <code>&lt;span class="fi fi-up-f &gt;&lt;/span&gt;</code>
+    <code>&lt;span class="fi fi-up-of &gt;&lt;/span&gt;</code>
+    <code>&lt;span class="fi fi-up-s &gt;&lt;/span&gt;</code>
+    <code>&lt;span class="fi fi-up-sf &gt;&lt;/span&gt;</code>
+</pre>
+<script src="data.js" ></script>
+<script>
+onfaceIconData.render(function (item) {
+if (item.type === 'classify') {
+    document.write(`<h2>${item.name}</h2>`)
+}
+else {
+    document.write(`
+        <span class="icon" >
+            <span class="fi fi-${item.name}" ></span>
+            <span class="icon-text">${item.name}</span>
+        </span>
+    `)
+    if (item.o) {
+        document.write(`
+            <span class="icon" >
+                <span class="fi fi-${item.name}-o" ></span>
+                <span class="icon-text">${item.name}-o</span>
+            </span>
+        `)
+    }
+    if (item.of) {
+        document.write(`
+            <span class="icon" >
+                <span class="fi fi-${item.name}-of" ></span>
+                <span class="icon-text">${item.name}-of</span>
+            </span>
+        `)
+    }
+    if (item.f) {
+        document.write(`
+            <span class="icon" >
+                <span class="fi fi-${item.name}-f" ></span>
+                <span class="icon-text">${item.name}-f</span>
+            </span>
+        `)
+    }
+    if (item.s) {
+        document.write(`
+            <span class="icon" >
+                <span class="fi fi-${item.name}-s" ></span>
+                <span class="icon-text">${item.name}-s</span>
+            </span>
+        `)
+    }
+    if (item.sf) {
+        document.write(`
+            <span class="icon" >
+                <span class="fi fi-${item.name}-sf" ></span>
+                <span class="icon-text">${item.name}-sf</span>
+            </span>
+        `)
+    }
+}
+})
+</script>
+</body>
+</html>
