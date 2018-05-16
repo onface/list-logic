@@ -13,7 +13,7 @@
 <div class="face-one-head">
     <a class="face-one-head-logo" href="../index.html">
         <img src="theme/media/logo.svg" alt="" class="face-one-head-logo-photo" />
-        face
+        face-page
     </a>
     <span class="face-one-head-slogan">
         Write less code, do more things!
@@ -80,25 +80,21 @@
 <h1 id="示例" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#示例"><span class="markrun-anchor-link"></span></a>示例</h1><h2 id="jQuery" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#jQuery"><span class="markrun-anchor-link"></span></a>jQuery</h2><div class="markrun markrun--html">
 <div class="markrun-html"></div>
 <div class="markrun-code">
-<div id="loading" style="display:none;" >loading...</div>
 <form id="search">
     cash: <input type="text" name="cash" placeholder="1~9" >
     <button type="submit" >Search</button>
 </form>
+<div id="loading" style="display:none;" >loading...</div>
 <div id="page"></div>
-<div id="list" style="padding:10px;border:1px solid #ABCDEF;" >
-
-</div></div>
+<div id="list" style="padding:10px;border:1px solid #ABCDEF;" ></div></div>
 <div class="markrun-source">
-<pre><code class="lang-html">&lt;<span class="hljs-selector-tag">div</span> id=<span class="hljs-string">"loading"</span> style=<span class="hljs-string">"display:none;"</span> &gt;loading...&lt;/div&gt;
-&lt;<span class="hljs-selector-tag">form</span> id=<span class="hljs-string">"search"</span>&gt;
+<pre><code class="lang-html">&lt;<span class="hljs-selector-tag">form</span> id=<span class="hljs-string">"search"</span>&gt;
     cash: &lt;<span class="hljs-selector-tag">input</span> type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"cash"</span> placeholder=<span class="hljs-string">"1~9"</span> &gt;
     &lt;<span class="hljs-selector-tag">button</span> type=<span class="hljs-string">"submit"</span> &gt;Search&lt;/button&gt;
 &lt;/form&gt;
+&lt;<span class="hljs-selector-tag">div</span> id=<span class="hljs-string">"loading"</span> style=<span class="hljs-string">"display:none;"</span> &gt;loading...&lt;/div&gt;
 &lt;<span class="hljs-selector-tag">div</span> id=<span class="hljs-string">"page"</span>&gt;&lt;/div&gt;
-&lt;<span class="hljs-selector-tag">div</span> id=<span class="hljs-string">"list"</span> style=<span class="hljs-string">"padding:10px;border:1px solid #ABCDEF;"</span> &gt;
-
-&lt;/div&gt;
+&lt;<span class="hljs-selector-tag">div</span> id=<span class="hljs-string">"list"</span> style=<span class="hljs-string">"padding:10px;border:1px solid #ABCDEF;"</span> &gt;&lt;/div&gt;
 </code></pre></div>
 </div>
 
@@ -119,54 +115,55 @@
                             <div class="face-one-code-source-tool">
                                 <span class="face-one-code-source-tool-copy fi fi-files-o"></span>
                             </div>
-                            <pre><code class="lang-js"><span class="hljs-keyword">var</span> $ = <span class="hljs-keyword">require</span>(<span class="hljs-string">'jquery'</span>)
-<span class="hljs-keyword">var</span> Listlogic = <span class="hljs-keyword">require</span>(<span class="hljs-string">'list-logic'</span>)
-window.<span class="hljs-keyword">list</span> = <span class="hljs-keyword">null</span>
-$(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                            <pre><code class="lang-js"><span class="hljs-keyword">var</span> $ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'jquery'</span>)
+<span class="hljs-keyword">var</span> Page = <span class="hljs-built_in">require</span>(<span class="hljs-string">'face-page'</span>)
+<span class="hljs-keyword">var</span> message = <span class="hljs-built_in">require</span>(<span class="hljs-string">'face-message'</span>)
+<span class="hljs-built_in">window</span>.list = <span class="hljs-literal">null</span>
+$(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> $search = $(<span class="hljs-string">'#search'</span>)
     <span class="hljs-keyword">var</span> $list = $(<span class="hljs-string">'#list'</span>)
     <span class="hljs-keyword">var</span> $page = $(<span class="hljs-string">'#page'</span>)
     <span class="hljs-keyword">var</span> $loading = $(<span class="hljs-string">'#loading'</span>)
-    <span class="hljs-keyword">list</span> = <span class="hljs-keyword">new</span> Listlogic({
-        getQuery: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> page = <span class="hljs-keyword">new</span> Page({
+        <span class="hljs-attr">getQuery</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
             <span class="hljs-keyword">var</span> serializeArray = $search.serializeArray()
             <span class="hljs-keyword">var</span> data = {}
-            serializeArray.<span class="hljs-keyword">forEach</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(item)</span> </span>{
+            serializeArray.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">item</span>) </span>{
                 data[item.name] = item.value
             })
             <span class="hljs-keyword">return</span> data
         },
-        willFetch: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(next)</span> </span>{
+        <span class="hljs-attr">willFetch</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>{
             <span class="hljs-keyword">if</span> ($loading.is(<span class="hljs-string">":visible"</span>)) {
-                console.log(<span class="hljs-string">'防止重复提交'</span>)
+                message.info(<span class="hljs-string">'防止重复提交'</span>)
+                reject()
                 <span class="hljs-keyword">return</span>
             }
             $loading.show()
-            next()
+            resolve()
         },
-        didFetch: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        <span class="hljs-attr">didFetch</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
             $loading.hide()
         },
-        fetch: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(queryData, render, didFetch)</span> </span>{
+        <span class="hljs-attr">fetch</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">queryData, render, didFetch</span>) </span>{
             queryData.page = queryData.page || <span class="hljs-number">1</span>
             $.ajax({
-                url: <span class="hljs-string">'http://echo.onface.cc/onface/echo/mock/list'</span>,
-                type: <span class="hljs-string">'get'</span>,
-                data: queryData,
-                dataType: <span class="hljs-string">'json'</span>
-            }).done(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(res)</span> </span>{
-                console.log(res)
+                <span class="hljs-attr">url</span>: <span class="hljs-string">'http://echo.onface.live/onface/echo/mock/list?$delay=300'</span>,
+                <span class="hljs-attr">type</span>: <span class="hljs-string">'get'</span>,
+                <span class="hljs-attr">data</span>: queryData,
+                <span class="hljs-attr">dataType</span>: <span class="hljs-string">'json'</span>
+            }).done(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) </span>{
                 render(res, queryData)
-            }).fail(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-                alert(<span class="hljs-string">'网络出错，请刷新重试'</span>)
+            }).fail(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                message.error(<span class="hljs-string">'网络出错，请刷新重试'</span>)
             })
-            .always(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            .always(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
                 didFetch()
             })
         },
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(res, queryData)</span> </span>{
+        <span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res, queryData</span>) </span>{
             <span class="hljs-comment">// render list</span>
-            <span class="hljs-keyword">var</span> html = res.data.map(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(item)</span> </span>{
+            <span class="hljs-keyword">var</span> html = res.data.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">item</span>) </span>{
                 <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;a style="display:block;" href="https://github.com/'</span> + item.idol + <span class="hljs-string">'" &gt;￥'</span> + item.cash + <span class="hljs-string">'-'</span> + item.name + <span class="hljs-string">'&lt;/a&gt;'</span>
             })
             <span class="hljs-keyword">if</span> (res.data.length === <span class="hljs-number">0</span>) {
@@ -176,7 +173,7 @@ $(<span class="hljs-function"><span class="hljs-keyword">function</span> <span c
 
             <span class="hljs-comment">// render paging</span>
             <span class="hljs-keyword">var</span> paging = []
-            res.page = Number(res.page)
+            res.page = <span class="hljs-built_in">Number</span>(res.page)
             <span class="hljs-keyword">if</span> (res.pageCount != <span class="hljs-number">1</span>) {
                 <span class="hljs-keyword">if</span> (res.page != <span class="hljs-number">1</span>) {
                     paging.push(<span class="hljs-string">'&lt;button data-page="'</span>+ (res.page - <span class="hljs-number">1</span>) + <span class="hljs-string">'" &gt;Prev&lt;/button&gt;'</span>)
@@ -190,28 +187,28 @@ $(<span class="hljs-function"><span class="hljs-keyword">function</span> <span c
 
         }
     })
-    $(<span class="hljs-string">'#search'</span>).on(<span class="hljs-string">'submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> </span>{
+    $(<span class="hljs-string">'#search'</span>).on(<span class="hljs-string">'submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
         e.preventDefault()
-        <span class="hljs-keyword">list</span>.query()
-    })
-    $(<span class="hljs-string">'body'</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-string">'#clearSearch'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-        $(<span class="hljs-string">'#search'</span>).get(<span class="hljs-number">0</span>).reset()
-        <span class="hljs-keyword">list</span>.query()
-    })
-    $(<span class="hljs-string">'#page'</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-string">'button'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> </span>{
-        <span class="hljs-keyword">list</span>.query({
-            page: $(this).data(<span class="hljs-string">'page'</span>)
+        page.query({}, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">info</span>) </span>{
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'query callback'</span>, info)
         })
     })
-    <span class="hljs-keyword">list</span>.query()
+    $(<span class="hljs-string">'body'</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-string">'#clearSearch'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        $(<span class="hljs-string">'#search'</span>).get(<span class="hljs-number">0</span>).reset()
+        page.query()
+    })
+    $(<span class="hljs-string">'#page'</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-string">'button'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+        page.query({
+            <span class="hljs-attr">page</span>: $(<span class="hljs-keyword">this</span>).data(<span class="hljs-string">'page'</span>)
+        })
+    })
+    page.query()
 })
 
 </code></pre>
                         </div>
                         
-                    </div>
-                                
-<h2 id="after before" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#after before"><span class="markrun-anchor-link"></span></a>after before</h2></div>
+                    </div></div>
 </div>
 </div>
 </div>
@@ -265,7 +262,7 @@ Array.from(document.querySelectorAll('.face-one-nav-item-group-item')).forEach(f
                 Github
             </div>
             <div class="face-one-foot-group-item">
-                <a href="https://github.com/onface/list-logic" class="face-one-foot-group-item-link">list-logic</a>
+                <a href="https://github.com/onface/page" class="face-one-foot-group-item-link">page</a>
                 - 项目源码
             </div>
         </div>
@@ -293,10 +290,10 @@ Array.from(document.querySelectorAll('.face-one-nav-item-group-item')).forEach(f
                 社区
             </div>
             <div class="face-one-foot-group-item">
-                <a href="https://github.com/onface/list-logic/issues" class="face-one-foot-group-item-link">Github issues</a>
+                <a href="https://github.com/onface/page/issues" class="face-one-foot-group-item-link">Github issues</a>
             </div>
             <div class="face-one-foot-group-item">
-                <a href="https://github.com/onface/list-logic/issues/new" class="face-one-foot-group-item-link">提交bug</a>
+                <a href="https://github.com/onface/page/issues/new" class="face-one-foot-group-item-link">提交bug</a>
             </div>
         </div>
         <div class="face-one-foot-copyright">

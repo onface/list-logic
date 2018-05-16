@@ -13,7 +13,7 @@
 <div class="face-one-head">
     <a class="face-one-head-logo" href="../index.html">
         <img src="theme/media/logo.svg" alt="" class="face-one-head-logo-photo" />
-        face
+        face-page
     </a>
     <span class="face-one-head-slogan">
         Write less code, do more things!
@@ -77,9 +77,9 @@
 <div class="face-one-layout-cnt">
 <div id="face-one-cnt" class="face-one-cnt markdown-body">
 <div id="face-one-sidebar" class="face-one-sidebar"></div>
-<h1 id="API" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#API"><span class="markrun-anchor-link"></span></a>API</h1><h2 id="new ListLogic()" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#new ListLogic()"><span class="markrun-anchor-link"></span></a>new ListLogic()</h2><pre><code class="lang-js"><span class="hljs-keyword">var</span> ListLogic = <span class="hljs-keyword">require</span>(<span class="hljs-string">'list-logic'</span>).<span class="hljs-keyword">default</span>
-<span class="hljs-comment">// import ListLogic from "lsit-logic"</span>
-<span class="hljs-keyword">var</span> <span class="hljs-keyword">list</span> = <span class="hljs-keyword">new</span> ListLogic(options)
+<h1 id="API" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#API"><span class="markrun-anchor-link"></span></a>API</h1><h2 id="new Page()" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#new Page()"><span class="markrun-anchor-link"></span></a>new Page()</h2><pre><code class="lang-js"><span class="hljs-keyword">var</span> Page = <span class="hljs-keyword">require</span>(<span class="hljs-string">'face-page'</span>).<span class="hljs-keyword">default</span>
+<span class="hljs-comment">// import Page from "lsit-logic"</span>
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">list</span> = <span class="hljs-keyword">new</span> Page(options)
 </code></pre>
 <h2 id="生命周期" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#生命周期"><span class="markrun-anchor-link"></span></a>生命周期</h2><blockquote>
 <p>options 主要配置用于列表的生命周期触发时所需要获取的一些数据，因为不同列表获取数据的方式是不同的。</p>
@@ -89,7 +89,7 @@
 <span class="hljs-number">3.</span> willFetch
 <span class="hljs-number">4.</span> fetch
 <span class="hljs-number">5.</span> render &amp; didFetch
-</code></pre><h3 id="getQuery" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#getQuery"><span class="markrun-anchor-link"></span></a>getQuery</h3><pre><code class="lang-js"><span class="hljs-keyword">new</span> ListLogic({
+</code></pre><h3 id="getQuery" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/list-logic/#getQuery"><span class="markrun-anchor-link"></span></a>getQuery</h3><pre><code class="lang-js"><span class="hljs-keyword">new</span> Page({
     <span class="hljs-comment">// 获取查询条件</span>
     getQuery: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">return</span> {
@@ -104,7 +104,7 @@
 <p>list.query() 调用后会执行 willFetch 若调用 next 则执行 fetch。
 若要防止重复搜索，不调用 next 则不会执行 fetch</p>
 </blockquote>
-<pre><code class="lang-js">new ListLogic({    
+<pre><code class="lang-js">new Page({    
     willFetch: function (<span class="hljs-name">next</span>) {
         if ($('#tip').hasClass('loading')) {
             return
@@ -118,7 +118,7 @@
 <blockquote>
 <p>options.willFetch 中调用 <code>next()</code> 后执行</p>
 </blockquote>
-<pre><code class="lang-js">new ListLogic({
+<pre><code class="lang-js">new Page({
     fetch: function (<span class="hljs-name">queryData</span>, render, didFetch) {
         $.ajax({
             url: '/some',
@@ -142,7 +142,7 @@
 <blockquote>
 <p>在 <code>options.fetch</code> 中调用 didFetch() 会执行</p>
 </blockquote>
-<pre><code class="lang-js"><span class="hljs-selector-tag">new</span> <span class="hljs-selector-tag">ListLogic</span>({    
+<pre><code class="lang-js"><span class="hljs-selector-tag">new</span> <span class="hljs-selector-tag">Page</span>({    
     <span class="hljs-attribute">didFetch</span>: function (next) {
         $(<span class="hljs-string">'#tip'</span>).<span class="hljs-built_in">removeClass</span>(<span class="hljs-string">'loading'</span>)
     }
@@ -152,7 +152,7 @@
 <blockquote>
 <p>在 <code>options.fetch</code> 中调用 <code>render(res, query)</code> 会执行</p>
 </blockquote>
-<pre><code class="lang-js"><span class="hljs-selector-tag">new</span> <span class="hljs-selector-tag">ListLogic</span>({
+<pre><code class="lang-js"><span class="hljs-selector-tag">new</span> <span class="hljs-selector-tag">Page</span>({
     <span class="hljs-attribute">render</span>: function (res, query) {        
         var html = <span class="hljs-string">'&lt;ul&gt;&lt;li&gt;'</span> + res.data.<span class="hljs-built_in">join</span>(<span class="hljs-string">'&lt;/li&gt;&lt;/li&gt;'</span>) + <span class="hljs-string">'&lt;/li&gt;&lt;/ul&gt;'</span>
         // 渲染列表
@@ -206,7 +206,7 @@ $(<span class="hljs-string">'#chanegPage'</span>).on(<span class="hljs-string">'
 <p>有时根据产品需求请求参数需要是 <code>user=nimo&amp;age=13&amp;page=3</code> (用户没有点击搜索按钮，查询条件不变化，即使页面中的 input 变化了。)</p>
 <p>这时就需要点击搜索按钮时将当前值保存起来，然后通过 <code>options.getQuery()</code> 获取的值是刚才保存的值。</p>
 <p>比如用 jQuery 可以这样做</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> list = <span class="hljs-keyword">new</span> ListLogic({
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> list = <span class="hljs-keyword">new</span> Page({
     <span class="hljs-attr">getQuery</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">return</span> $(<span class="hljs-string">'#search'</span>).data(<span class="hljs-string">'query'</span>)
     }
@@ -282,7 +282,7 @@ Array.from(document.querySelectorAll('.face-one-nav-item-group-item')).forEach(f
                 Github
             </div>
             <div class="face-one-foot-group-item">
-                <a href="https://github.com/onface/list-logic" class="face-one-foot-group-item-link">list-logic</a>
+                <a href="https://github.com/onface/page" class="face-one-foot-group-item-link">page</a>
                 - 项目源码
             </div>
         </div>
@@ -310,10 +310,10 @@ Array.from(document.querySelectorAll('.face-one-nav-item-group-item')).forEach(f
                 社区
             </div>
             <div class="face-one-foot-group-item">
-                <a href="https://github.com/onface/list-logic/issues" class="face-one-foot-group-item-link">Github issues</a>
+                <a href="https://github.com/onface/page/issues" class="face-one-foot-group-item-link">Github issues</a>
             </div>
             <div class="face-one-foot-group-item">
-                <a href="https://github.com/onface/list-logic/issues/new" class="face-one-foot-group-item-link">提交bug</a>
+                <a href="https://github.com/onface/page/issues/new" class="face-one-foot-group-item-link">提交bug</a>
             </div>
         </div>
         <div class="face-one-foot-copyright">
