@@ -1,11 +1,11 @@
 # API
 
-## new ListLogic()
+## new Page()
 
 ```js
-var ListLogic = require('list-logic').default
-// import ListLogic from "lsit-logic"
-var list = new ListLogic(options)
+var Page = require('face-page').default
+// import Page from "lsit-logic"
+var list = new Page(options)
 ```
 
 ## 生命周期
@@ -23,7 +23,7 @@ list.query()
 ### getQuery
 
 ```js
-new ListLogic({
+new Page({
     // 获取查询条件
     getQuery: function () {
         return {
@@ -43,7 +43,7 @@ new ListLogic({
 > 若要防止重复搜索，不调用 next 则不会执行 fetch
 
 ```js
-new ListLogic({    
+new Page({    
     willFetch: function (next) {
         if ($('#tip').hasClass('loading')) {
             return
@@ -61,7 +61,7 @@ new ListLogic({
 > options.willFetch 中调用 `next()` 后执行
 
 ```js
-new ListLogic({
+new Page({
     fetch: function (queryData, render, didFetch) {
         $.ajax({
             url: '/some',
@@ -91,7 +91,7 @@ new ListLogic({
 
 
 ```js
-new ListLogic({    
+new Page({    
     didFetch: function (next) {
         $('#tip').removeClass('loading')
     }
@@ -105,7 +105,7 @@ new ListLogic({
 > 在 `options.fetch` 中调用 `render(res, query)` 会执行
 
 ```js
-new ListLogic({
+new Page({
     render: function (res, query) {        
         var html = '<ul><li>' + res.data.join('</li></li>') + '</li></ul>'
         // 渲染列表
@@ -187,7 +187,7 @@ $('#chanegPage').on('submit', function () {
 比如用 jQuery 可以这样做
 
 ```js
-var list = new ListLogic({
+var list = new Page({
     getQuery: function () {
         return $('#search').data('query')
     }

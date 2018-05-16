@@ -1,12 +1,13 @@
 var $ = require('jquery')
-var Listlogic = require('list-logic')
+var Page = require('face-page')
+var message = require('face-message')
 window.list = null
 $(function () {
     var $search = $('#search')
     var $list = $('#list')
     var $page = $('#page')
     var $loading = $('#loading')
-    list = new Listlogic({
+    var page = new Page({
         getQuery: function () {
             var serializeArray = $search.serializeArray()
             var data = {}
@@ -15,13 +16,14 @@ $(function () {
             })
             return data
         },
-        willFetch: function (next) {
+        willFetch: function (resolve, reject) {
             if ($loading.is(":visible")) {
-                console.log('防止重复提交')
+                message.info('防止重复提交')
+                reject()
                 return
             }
             $loading.show()
-            next()
+            resolve()
         },
         didFetch: function () {
             $loading.hide()
@@ -29,15 +31,14 @@ $(function () {
         fetch: function (queryData, render, didFetch) {
             queryData.page = queryData.page || 1
             $.ajax({
-                url: 'http://echo.onface.cc/onface/echo/mock/list',
+                url: 'http://echo.onface.live/onface/echo/mock/list?$delay=300',
                 type: 'get',
                 data: queryData,
                 dataType: 'json'
             }).done(function (res) {
-                console.log(res)
                 render(res, queryData)
             }).fail(function () {
-                alert('网络出错，请刷新重试')
+                message.error('网络出错，请刷新重试')
             })
             .always(function () {
                 didFetch()
@@ -71,16 +72,18 @@ $(function () {
     })
     $('#search').on('submit', function (e) {
         e.preventDefault()
-        list.query()
+        page.query({}, function (info) {
+            console.log('query callback', info)
+        })
     })
     $('body').on('click', '#clearSearch', function () {
         $('#search').get(0).reset()
-        list.query()
+        page.query()
     })
     $('#page').on('click', 'button', function (e) {
-        list.query({
+        page.query({
             page: $(this).data('page')
         })
     })
-    list.query()
+    page.query()
 })

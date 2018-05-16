@@ -1,4 +1,4 @@
-# list-logic
+# face-page
 
 <!--MR-D{tpl: 'home'}-->
 
@@ -7,15 +7,15 @@
 -->
 
 <div class="face-one-intro">
-    <div class="face-one-intro-title">list-logic</div>
+    <div class="face-one-intro-title">face-page</div>
     <h2 class="face-one-intro-desc">
-        封装列表逻辑代码
+        封装 搜索/列表/分页 逻辑代码
     </h2>
     <div class="face-one-intro-tool">
-        <a href="https://onface.github.io/list-logic" class="face-one-intro-btn face-one-intro-btn--primary mr-online-hide" >在线文档</a>
+        <a href="https://onface.github.io/face-page" class="face-one-intro-btn face-one-intro-btn--primary mr-online-hide" >在线文档</a>
         <!-- MARKRUN-HTML
             <a href="./doc/intro.md" class="face-one-intro-btn face-one-intro-btn--primary">指引</a>
-            <a href="http://github.com/onface/list-logic" class="face-one-intro-btn">GITHUB</a>
+            <a href="http://github.com/onface/face-page" class="face-one-intro-btn">GITHUB</a>
         -->
     </div>
 </div>
