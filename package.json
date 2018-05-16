@@ -16,7 +16,7 @@
         "test:ci": "./node_modules/karma/bin/karma start ./compile/karma.ci.js"
     },
     "$username": "onface",
-    "$repository": "face-page",
+    "$repository": "page",
     "dependencies": {
         "calling": "^0.3.1",
         "extend": "^3.0.1",
